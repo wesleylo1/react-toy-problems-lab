@@ -15,17 +15,14 @@ export default class Palindrome extends Component {
     }
 
     isPalindrome(userInput) {
-        let string = userInput
-        let backword = userInput
-        backword = userInput.split("")
-        backword = backword.reverse()
-        backword = backword.join("")
-
-        if (string === backword) {
-            this.setState({ palindrome: "true" })
+        let palindrome = ""
+        let backword = userInput.split("").reverse().join("")
+        if (userInput === backword) {
+            palindrome = "true"
         } else {
-            this.setState({ palindrome: "false" })
+            palindrome = "false"
         }
+        this.setState({ palindrome: palindrome })
     }
 
     render() {
@@ -41,10 +38,10 @@ export default class Palindrome extends Component {
                     onClick={() => this.isPalindrome(this.state.userInput)}
                     className="confirmationButton"
                 >
-                    Palindrome
+                    Check if palindrome
                 </button>
                 <span className="resultsBox">
-                    Palindrome: {this.state.palindrome}
+                    palindrome: {this.state.palindrome}
                 </span>
             </div>
         )

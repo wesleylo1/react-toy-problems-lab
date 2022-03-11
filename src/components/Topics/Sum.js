@@ -11,16 +11,19 @@ export default class Sum extends Component {
         }
     }
 
-    numberOneChange(val) {
-        this.setState({ number1: parseInt(val, 10) })
+    changeNumberOne(val) {
+        this.setState({ number1: val })
     }
 
-    numberTwoChange(val) {
-        this.setState({ number2: parseInt(val, 10) })
+    changeNumberTwo(val) {
+        this.setState({ number2: val })
     }
 
-    addNumbers(number1, number2) {
-        this.setState({ sum: number1 + number2 })
+    addNumbers(num1, num2) {
+        let a = parseInt(num1, 10)
+        let b = parseInt(num2, 10)
+        let sum = a + b
+        this.setState({ sum: sum })
     }
 
     render() {
@@ -28,12 +31,12 @@ export default class Sum extends Component {
             <div className="puzzleBox sumPB">
                 <h4>Sum</h4>
                 <input
-                    onChange={(e) => this.numberOneChange(e.target.value)}
+                    onChange={(e) => this.changeNumberOne(e.target.value)}
                     className="inputLine"
                     type="number"
                 />
                 <input
-                    onChange={(e) => this.numberTwoChange(e.target.value)}
+                    onChange={(e) => this.changeNumberTwo(e.target.value)}
                     className="inputLine"
                     type="number"
                 />
@@ -43,9 +46,9 @@ export default class Sum extends Component {
                     }
                     className="confirmationButton"
                 >
-                    Add
+                    add
                 </button>
-                <span className="resultsBox">Sum: {this.state.sum}</span>
+                <span className="resultsBox">sum: {this.state.sum}</span>
             </div>
         )
     }

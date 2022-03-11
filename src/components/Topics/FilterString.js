@@ -5,22 +5,32 @@ export default class FilterString extends Component {
         super()
 
         this.state = {
-            names: ["Jasmine", "Jared", "Zeke", "Frank"],
+            names: [
+                "Jake",
+                "Steve",
+                "Abby",
+                "Frank",
+                "Ryan",
+                "Dobby",
+                "Rosa",
+                "Sam",
+                "Nicole",
+                "Joanne"
+            ],
             userInput: "",
             filteredNames: []
         }
     }
 
-    changeInput(value) {
-        this.setState({ userInput: value })
+    handleChange(val) {
+        this.setState({ userInput: val })
     }
 
-    filterString(userInput) {
+    filteringString(userInput) {
         let names = this.state.names
         let filteredNames = []
-
         for (let i = 0; i < names.length; i++) {
-            if (names[i].includes(userInput)) {
+            if (names[i] === userInput) {
                 filteredNames.push(names[i])
             }
         }
@@ -33,21 +43,22 @@ export default class FilterString extends Component {
             <div className="puzzleBox filterStringPB">
                 <h4>Filter String</h4>
                 <span className="puzzleText">
-                    Original: {JSON.stringify(this.state.names)}
+                    unfiltered: {JSON.stringify(this.state.names, null, 10)}
                 </span>
                 <input
-                    onChange={(e) => this.changeInput(e.target.value)}
+                    onChange={(e) => this.handleChange(e.target.value)}
                     className="inputLine"
                     type="text"
                 />
                 <button
-                    onClick={() => this.filterString(this.state.userInput)}
+                    onClick={() => this.filteringString(this.state.userInput)}
                     className="confirmationButton"
                 >
-                    Filter
+                    Filter the String
                 </button>
                 <span className="resultsBox filterStringRB">
-                    Filtered: {JSON.stringify(this.state.filteredNames)}
+                    filtered:{" "}
+                    {JSON.stringify(this.state.filteredNames, null, 10)}
                 </span>
             </div>
         )

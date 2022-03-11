@@ -1,47 +1,52 @@
 import React, { Component } from "react"
 
 export default class FilterObject extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
 
         this.state = {
             people: [
                 {
-                    name: "Jackie",
-                    title: "student",
-                    age: 24
+                    name: "Jake",
+                    age: 20,
+                    title: "Student"
                 },
                 {
-                    name: "Steve",
-                    gender: "Male",
-                    age: 30
+                    name: "Simon",
+                    age: 30,
+                    gender: "male"
                 },
                 {
-                    name: "Frank",
-                    title: "CEO"
+                    name: "Drake",
+                    age: 25,
+                    color: "red"
+                },
+                {
+                    name: "Lucy",
+                    age: 29,
+                    title: "Teacher"
                 }
             ],
             userInput: "",
-            filteredArray: []
+            filteredPeople: []
         }
     }
 
-    handleChange(val) {
-        this.setState({ userInput: val })
+    handleChange(value) {
+        this.setState({ userInput: value })
     }
 
-    filterPeople(prop) {
+    filterChange(userInput) {
         let people = this.state.people
-        let filteredPeople = []
+        let newPeople = []
 
         for (let i = 0; i < people.length; i++) {
-            if (people[i].hasOwnProperty(prop)) {
-                filteredPeople.push(people[i])
+            if (people[i].hasOwnProperty(userInput)) {
+                newPeople.push(people[i])
             }
         }
 
-        this.setState({ userInput: "" })
-        this.setState({ filteredArray: filteredPeople })
+        this.setState({ filteredPeople: newPeople })
     }
 
     render() {
@@ -49,7 +54,7 @@ export default class FilterObject extends Component {
             <div className="puzzleBox filterObjectPB">
                 <h4>Filter Object</h4>
                 <span className="puzzleText">
-                    Original: {JSON.stringify(this.state.people)}
+                    People: {JSON.stringify(this.state.people, null, 10)}
                 </span>
                 <input
                     onChange={(e) => this.handleChange(e.target.value)}
@@ -57,13 +62,14 @@ export default class FilterObject extends Component {
                     type="text"
                 />
                 <button
-                    onClick={() => this.filterPeople(this.state.userInput)}
+                    onClick={() => this.filterChange(this.state.userInput)}
                     className="confirmationButton"
                 >
-                    Filter
+                    filter
                 </button>
                 <span className="resultsBox filterObjectRB">
-                    Filtered Array: {JSON.stringify(this.state.filteredArray)}
+                    filtered:
+                    {JSON.stringify(this.state.filteredPeople)}
                 </span>
             </div>
         )
